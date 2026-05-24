@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Brothers Day — Kapish Bhaiya 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rose: #e8446a;
+    --blush: #f7a8bc;
+    --peach: #f9c784;
+    --cream: #fff8f0;
+    --warm-white: #fffbf7;
+    --dark: #2d1a22;
+    --mid: #7a3c52;
+    --soft: #c9768e;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── animated gradient bg ── */
+  .page-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 10% 10%, #ffe4ee 0%, transparent 60%),
+      radial-gradient(ellipse 70% 70% at 90% 20%, #fff0d6 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 50% 90%, #fde8f5 0%, transparent 60%),
+      #fff8f0;
+    animation: bgShift 10s ease-in-out infinite alternate;
+  }
+
+  @keyframes bgShift {
+    0%   { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(12deg); }
+  }
+
+  /* ── confetti canvas ── */
+  #confetti-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* ── main layout ── */
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  /* ── hero ── */
+  .hero {
+    text-align: center;
+    padding: 2rem 0 3rem;
+  }
+
+  .occasion-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border: 1.5px solid var(--blush);
+    color: var(--rose);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 12px rgba(232, 68, 106, 0.12);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--dark);
+    margin-bottom: 0.4rem;
+    letter-spacing: -1px;
+  }
+
+  .hero-title span {
+    display: block;
+    background: linear-gradient(135deg, var(--rose) 0%, #f4845f 50%, var(--peach) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    color: var(--soft);
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 0.6rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+  }
+
+  /* ── photo section ── */
+  .photo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    margin: 2.5rem 0;
+  }
+
+  .photo-frame {
+    position: relative;
+    width: 150px;
+    height: 150px;
+  }
+
+  .photo-ring-outer {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: conic-gradient(var(--rose), var(--peach), var(--blush), var(--rose));
+    animation: spin 6s linear infinite;
+    padding: 3px;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .photo-ring-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--cream);
+    padding: 4px;
+  }
+
+  .photo-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .photo-fallback {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blush), var(--peach));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+
+  .heart-float {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    font-size: 1.5rem;
+    animation: heartBeat 1.2s ease-in-out infinite;
+    filter: drop-shadow(0 2px 6px rgba(232,68,106,0.4));
+  }
+
+  @keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+  }
+
+  /* ── nicknames ── */
+  .nicknames {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nick {
+    background: white;
+    border: 1.5px solid var(--blush);
+    color: var(--mid);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 16px;
+    border-radius: 100px;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .nick:hover {
+    background: var(--rose);
+    color: white;
+    border-color: var(--rose);
+  }
+
+  /* ── music player ── */
+  .music-player {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: white;
+    border: 1.5px solid #f0d0dc;
+    border-radius: 16px;
+    padding: 14px 20px;
+    margin: 2rem auto;
+    max-width: 360px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(232, 68, 106, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .music-player:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 32px rgba(232, 68, 106, 0.16);
+  }
+
+  .music-disc {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rose), var(--peach));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    animation: discSpin 4s linear infinite paused;
+  }
+
+  .music-player:hover .music-disc {
+    animation-play-state: running;
+  }
+
+  @keyframes discSpin {
+    to { transform: rotate(360deg); }
+  }
+
+  .music-info { flex: 1; }
+
+  .music-title {
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 0.95rem;
+  }
+
+  .music-artist {
+    font-size: 0.78rem;
+    color: var(--soft);
+    margin-top: 2px;
+  }
+
+  .music-play {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--rose);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+    padding-left: 2px;
+  }
+
+  /* ── divider ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0.5rem 0 2rem;
+  }
+
+  .divider::before,
+  .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--blush), transparent);
+  }
+
+  .divider-icon { font-size: 1.1rem; }
+
+  /* ── section label ── */
+  .section-label {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    color: var(--mid);
+    margin-bottom: 0.3rem;
+  }
+
+  .section-hint {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--soft);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
+
+  /* ── cards grid ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+  }
+
+  /* ── reveal card ── */
+  .card {
+    background: white;
+    border-radius: 20px;
+    border: 1.5px solid #f0d8e4;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(232,68,106,0.06);
+    transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .card:hover {
+    transform: translateY(-6px) scale(1.015);
+    box-shadow: 0 16px 40px rgba(232,68,106,0.14);
+  }
+
+  .card:active {
+    transform: scale(0.98);
+  }
+
+  /* card front (always visible) */
+  .card-front {
+    padding: 2rem 1.5rem 1.4rem;
+    text-align: center;
+    transition: padding-bottom 0.3s;
+  }
+
+  .card-emoji {
+    font-size: 2.8rem;
+    display: block;
+    margin-bottom: 0.9rem;
+    transition: transform 0.3s;
+  }
+
+  .card:hover .card-emoji {
+    transform: scale(1.15) rotate(-5deg);
+  }
+
+  .card-num {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blush);
+    margin-bottom: 4px;
+  }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.25;
+    margin-bottom: 0.8rem;
+  }
+
+  .tap-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--rose);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background: #fff0f4;
+    padding: 4px 12px;
+    border-radius: 100px;
+    border: 1px solid #ffd0dc;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .card.open .tap-label {
+    background: var(--rose);
+    color: white;
+    border-color: var(--rose);
+  }
+
+  /* card body (hidden until open) */
+  .card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.55s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .card.open .card-body {
+    max-height: 500px;
+  }
+
+  .card-body-inner {
+    padding: 0 1.5rem 1.5rem;
+    border-top: 1.5px dashed #f5d0dc;
+    margin: 0 0.5rem;
+    padding-top: 1.2rem;
+  }
+
+  .card-text {
+    font-size: 0.92rem;
+    color: #4a2535;
+    line-height: 1.85;
+    font-weight: 400;
+  }
+
+  /* ── footer ── */
+  .footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #f0d8e4;
+  }
+
+  .footer-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--rose);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-sub {
+    font-size: 0.82rem;
+    color: var(--soft);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* ── confetti ── */
+  @keyframes confettiFall {
+    0%   { transform: translateY(-10px) rotate(0deg) scaleX(1); opacity: 1; }
+    100% { transform: translateY(105vh) rotate(720deg) scaleX(-1); opacity: 0; }
+  }
+
+  /* responsive */
+  @media (max-width: 520px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    main { padding: 2rem 1rem 4rem; }
+    .hero-title { font-size: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-bg"></div>
+<canvas id="confetti-canvas"></canvas>
+
+<main>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="occasion-badge">🎊 Happy Brothers Day 🎊</div>
+    <h1 class="hero-title">
+      For<br>
+      <span>Kapish Bhaiya</span>
+    </h1>
+    <p class="hero-sub">from your choti — with all the feelings she can't say out loud</p>
+  </div>
+
+  <!-- Photo + Nicknames -->
+  <div class="photo-section">
+    <div class="photo-frame">
+      <div class="photo-ring-outer">
+        <div class="photo-ring-inner">
+          <img
+            class="photo-img"
+            src="Screenshot_2026-05-24_at_11_22_27_AM.png"
+            alt="Kapish Bhaiya"
+            onerror="this.style.display='none'; document.querySelector('.photo-fallback').style.display='flex';"
+          >
+          <div class="photo-fallback" style="display:none;">🌟</div>
+        </div>
+      </div>
+      <span class="heart-float">❤️</span>
+    </div>
+
+    <div class="nicknames">
+      <span class="nick">Kapish Bhaiya</span>
+      <span class="nick">Kidnapper Bhaiya</span>
+      <span class="nick">Suglee Bhaiya</span>
+    </div>
+  </div>
+
+  <!-- Music player -->
+  <a class="music-player" href="https://www.youtube.com/results?search_query=Tenu+Sang+Rakhna" target="_blank" rel="noopener">
+    <div class="music-disc">🎵</div>
+    <div class="music-info">
+      <div class="music-title">Tenu Sang Rakhna</div>
+      <div class="music-artist">Our song — tap to listen</div>
+    </div>
+    <div class="music-play">▶</div>
+  </a>
+
+  <!-- Cards section -->
+  <div class="divider"><span class="divider-icon">✦</span></div>
+  <p class="section-label">Little letters, big feelings</p>
+  <p class="section-hint">✦ tap each card to reveal ✦</p>
+
+  <div class="cards-grid" id="cards-grid">
+
+    <div class="card" onclick="openCard(this)">
+      <div class="card-front">
+        <span class="card-emoji">🥺</span>
+        <div class="card-num">01 — support</div>
+        <div class="card-title">You stayed when others didn't</div>
+        <div class="tap-label">✦ tap to read</div>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <p class="card-text">Thank you for always supporting me even when you had problems yourself. Mere gusse mein bhi mujhe pyaar se baate samjhane ke liye — vo baat alag hai gusse mein mujhe kuch samajh nahi aata — but thank you for always staying by my side jab mere khud ke gharwale mere against the. Ngl I'm crying while writing this. I never thought aap mere liye itne important ban jaoge... but yaah. Love you mere Suglee Bhaiya, alwaysss. 💕</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="openCard(this)">
+      <div class="card-front">
+        <span class="card-emoji">🫂</span>
+        <div class="card-num">02 — sacrifice</div>
+        <div class="card-title">You sacrificed so much</div>
+        <div class="tap-label">✦ tap to read</div>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <p class="card-text">Thank you for sacrificing yourself just to keep me happy. Mera gussa itne calmly handle karne ke liye — instead of hating me because of how rude and difficult I can be right now. Maybe bahut saari spellings galat hongi, ik, but the feelings are true. Every single word of it. 🤍</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="openCard(this)">
+      <div class="card-front">
+        <span class="card-emoji">👦🏻</span>
+        <div class="card-num">03 — family</div>
+        <div class="card-title">You showed me what a brother feels like</div>
+        <div class="tap-label">✦ tap to read</div>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <p class="card-text">You made me realise how it would feel if I had an elder brother. Someone who has your back even when the world doesn't. Someone who chooses you even when it's inconvenient. That's you, Kapish Bhaiya. Always and without fail. 🫶</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="openCard(this)">
+      <div class="card-front">
+        <span class="card-emoji">💌</span>
+        <div class="card-num">04 — love</div>
+        <div class="card-title">Too many feelings, too few words</div>
+        <div class="tap-label">✦ tap to read</div>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <p class="card-text">Love you alwaysss. Itni saari cheezein hain bolne ki ki samajh nahi aa raha kya kya kaise bolun. Bas itna hai ki you are really, truly important for me. More than you probably know. More than I'll probably say out loud. But I hope this counts. 💛</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="openCard(this)">
+      <div class="card-front">
+        <span class="card-emoji">🗳️</span>
+        <div class="card-num">05 — same brain</div>
+        <div class="card-title">Shared opinions — a rare gift</div>
+        <div class="tap-label">✦ tap to read</div>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <p class="card-text">Andddd yayayyyy — we have the same political opinions! That's honestly rare and I love that about us. But okay fine, CJP is also not a great party — it's not really neutralist, more anti-BJP than anything else. You know I had to keep it real 😅. Our debates &gt; everyone else's peace. 🧠</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="openCard(this)">
+      <div class="card-front">
+        <span class="card-emoji">🤫</span>
+        <div class="card-num">06 — unsaid</div>
+        <div class="card-title">I'm not good at words, but...</div>
+        <div class="tap-label">✦ tap to read</div>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <p class="card-text">I'm not good at words — but aap samajh jaoge. You always do. That's the thing about you. You don't need a perfect sentence from me. You just get it. And that? That means everything. 🌸</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="openCard(this)">
+      <div class="card-front">
+        <span class="card-emoji">🌙</span>
+        <div class="card-num">07 — quietly there</div>
+        <div class="card-title">The quiet things you do</div>
+        <div class="tap-label">✦ tap to read</div>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <p class="card-text">You never make a big deal of the things you do for me. No drama, no expectations. Just quietly there — checking in, showing up, staying. Kidnapper Bhaiya has kidnapped my trust completely and I'm not even mad about it. 😭❤️</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="openCard(this)">
+      <div class="card-front">
+        <span class="card-emoji">🧡</span>
+        <div class="card-num">08 — you</div>
+        <div class="card-title">What you mean to me</div>
+        <div class="tap-label">✦ tap to read</div>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <p class="card-text">Not all brothers are blood. Some are chosen by life when it wants to make things slightly less hard for you. You came into my world and somehow became a permanent part of it — Suglee Bhaiya, loudly chaotic and quietly kind, all at once. Never change. 🌻</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-main">Happy Brothers Day, Kapish Bhaiya 🎉</div>
+    <p class="footer-sub">— from your choti who cried writing this but will deny it completely<br>Love you. Always. No take-backs.</p>
+  </div>
+
+</main>
+
+<script>
+// ── Card reveal ──
+function openCard(card) {
+  const wasOpen = card.classList.contains('open');
+  card.classList.toggle('open');
+  if (!wasOpen) burst(card);
+}
+
+// ── Confetti burst ──
+const canvas = document.getElementById('confetti-canvas');
+const ctx = canvas.getContext('2d');
+let pieces = [];
+let animating = false;
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+function burst(el) {
+  const r = el.getBoundingClientRect();
+  const cx = r.left + r.width / 2;
+  const cy = r.top + r.height / 2;
+  const colors = ['#e8446a','#f7a8bc','#f9c784','#a8d8f0','#c8a8f0','#a8f0c8','#f0c8a8','#ff8fab'];
+  for (let i = 0; i < 80; i++) {
+    const angle = (Math.PI * 2 * i) / 80 + Math.random() * 0.3;
+    const speed = 3 + Math.random() * 7;
+    pieces.push({
+      x: cx, y: cy,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed - 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      size: 5 + Math.random() * 8,
+      rot: Math.random() * 360,
+      rotV: (Math.random() - 0.5) * 10,
+      alpha: 1,
+      shape: Math.random() > 0.5 ? 'rect' : 'circle',
+      gravity: 0.25 + Math.random() * 0.15,
+    });
+  }
+  if (!animating) animate();
+}
+
+function animate() {
+  animating = true;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  pieces.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += p.gravity;
+    p.rot += p.rotV;
+    p.alpha -= 0.018;
+    ctx.save();
+    ctx.globalAlpha = Math.max(0, p.alpha);
+    ctx.translate(p.x, p.y);
+    ctx.rotate((p.rot * Math.PI) / 180);
+    ctx.fillStyle = p.color;
+    if (p.shape === 'rect') {
+      ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+    } else {
+      ctx.beginPath();
+      ctx.arc(0, 0, p.size / 2.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+  });
+  pieces = pieces.filter(p => p.alpha > 0 && p.y < canvas.height + 20);
+  if (pieces.length > 0) requestAnimationFrame(animate);
+  else animating = false;
+}
+
+// ── ambient confetti on load ──
+(function ambientLoad() {
+  const colors = ['#f7a8bc','#f9c784','#e8446a','#c8a8f0'];
+  for (let i = 0; i < 30; i++) {
+    setTimeout(() => {
+      pieces.push({
+        x: Math.random() * window.innerWidth,
+        y: -10,
+        vx: (Math.random() - 0.5) * 2,
+        vy: 1.5 + Math.random() * 2,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        size: 6 + Math.random() * 6,
+        rot: Math.random() * 360,
+        rotV: (Math.random() - 0.5) * 4,
+        alpha: 0.7,
+        shape: 'rect',
+        gravity: 0.05,
+      });
+      if (!animating) animate();
+    }, i * 200);
+  }
+})();
+</script>
+</body>
+</html>
